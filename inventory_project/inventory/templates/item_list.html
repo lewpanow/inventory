@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+{% block title %}Список предметов{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="fade-in">Список предметов</h1>
+
+        <div class="table-responsive">
+            <table class="item-table table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="text-center">Название</th>
+                        <th class="text-center">Описание</th>
+                        <th class="text-center">Количество</th>
+                        <th class="text-center">Цена</th>
+                        <th class="text-center">Редактировать</th>
+                        <th class="text-center">Удалить</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in items %}
+                        <tr>
+                            <td class="text-left">{{ item.name }}</td>
+                            <td class="text-left description-cell">{{ item.description }}</td>
+                            <td class="text-center">{{ item.quantity }}</td>
+                            <td class="text-right">{{ item.price }}</td>
+                            <td class="text-center">
+                                <!-- Кнопка для редактирования -->
+                                <a href="{% url 'edit_item' item.id %}" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-edit"></i> Редактировать
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <!-- Кнопка для удаления -->
+                                <a href="{% url 'delete_item' item.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить этот предмет?');">
+                                    <i class="fas fa-trash-alt"></i> Удалить
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center">Нет предметов для отображения.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Система инвентаризации{% endblock %}</title>
+    
+    {% load static %} 
+
+    <!-- Подключение стилей -->
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    
+    <!-- Подключение JavaScript -->
+    <script defer src="{% static 'script.js' %}"></script>
+
+    <!-- Подключение Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Верхнее меню -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="/">Система инвентаризации</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="/items/">Элементы</a></li>
+                <li><a href="/add-item/">Добавить элемент</a></li>
+                <li><a href="/contact/">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Основное содержимое -->
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Система инвентаризации. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
+
